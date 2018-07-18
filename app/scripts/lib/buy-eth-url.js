@@ -32,6 +32,8 @@ function getBuyEthUrl ({ network, amount, address }) {
 
     case '77':
       url = 'https://faucet-sokol.herokuapp.com/'
+    case '99':
+      url = 'https://poa.network/'
       break
   }
   return url
