@@ -18,6 +18,19 @@ async function publishRelease() {
   let releaseId;
   const CREATE_RELEASE_URI = `https://api.github.com/repos/natlg/metamask-extension/releases`;
   console.log(`CREATE_RELEASE_URI: ${CREATE_RELEASE_URI}`)
+  let changelog = "";
+  try {
+    changelog = fs.readFileSync('./CHANGELOG.md').toString().split(VERSION)[1].split('##')[0].trim();
+  } catch (err) {
+    console.error(`Error in getting changelog: ${err}`)
+  }
+  // remove first line with date
+  let newLineIndex = changelog.indexOf('\n');
+  let changes = "New release is ready.";
+  if (newLineIndex !== -1) {
+    changes = changelog.slice(newLineIndex + 1);
+  }
+  console.log(`changes: ${changes}`);
 
   request({
     method: 'POST',
@@ -27,7 +40,7 @@ async function publishRelease() {
       'Authorization': `token ${GITHUB_TOKEN}`
     },
     body: JSON.stringify({
-      body: "Release is ready",
+      body: changes,
       tag_name: `v${VERSION}`,
       name: `Version ${VERSION}`,
       target_commitish: CIRCLE_SHA1,
@@ -43,13 +56,11 @@ async function publishRelease() {
         return uploadAsset(`./builds/metamask-firefox-${VERSION}.zip`, `metamask-firefox-${VERSION}.zip`, releaseId)
       })
       .then(() => {
-          return uploadAsset(`./builds/metamask-edge-${VERSION}.zip`, `metamask-edge-${VERSION}.zip`, releaseId)
-        }
-      )
+        return uploadAsset(`./builds/metamask-edge-${VERSION}.zip`, `metamask-edge-${VERSION}.zip`, releaseId)
+      })
       .then(() => {
-          return uploadAsset(`./builds/metamask-opera-${VERSION}.zip`, `metamask-opera-${VERSION}.zip`, releaseId)
-        }
-      )
+        return uploadAsset(`./builds/metamask-opera-${VERSION}.zip`, `metamask-opera-${VERSION}.zip`, releaseId)
+      })
   }).catch(function (err) {
     console.error('error in request:' + err);
     throw err;
