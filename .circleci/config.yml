@@ -343,6 +343,7 @@ jobs:
             git config user.email admin@metamask.io
             gh-pages -d docs/jsdocs
 
+
   test-unit:
     docker:
       - image: circleci/node:8.11.3-browsers
