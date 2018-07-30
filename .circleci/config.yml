@@ -418,6 +418,7 @@ jobs:
           name: test:integration:mascara
           command: npm run test:mascara
 
+
   test-integration-mascara-chrome:
     environment:
       browsers: '["Chrome"]'
