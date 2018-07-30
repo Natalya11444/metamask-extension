@@ -105,16 +105,11 @@ jobs:
       - run:
           name: Install npm 6 + deps via npm
           command: |
-           sudo npm install -g npm@6.1.0 && npm install
-      - save_cache:
-          key: dependency-cache-{{ checksum "package-lock.json" }}
-          paths:
-            - node_modules
+           sudo npm install -g npm@6.1.0 && npm install --no-save
       - save_cache:
           key: dependency-cache-{{ .Revision }}
           paths:
             - node_modules
-
   prep-deps-firefox:
     docker:
       - image: circleci/node:8.11.3-browsers
@@ -126,7 +121,7 @@ jobs:
           name: Download Firefox
           command: ./.circleci/scripts/firefox-download.sh
       - save_cache:
-          key: dependency-cache-firefox-
+          key: v1.0-dependency-cache-firefox-
           paths:
             - firefox
 
@@ -227,7 +222,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: dependency-cache-firefox-
+          key: v1.0-dependency-cache-firefox-
       - run:
           name: Install firefox
           command: ./.circleci/scripts/firefox-install.sh
@@ -264,7 +259,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: dependency-cache-firefox-
+          key: v1.0-dependency-cache-firefox-
       - run:
           name: Install firefox
           command: ./.circleci/scripts/firefox-install.sh
@@ -364,7 +359,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: dependency-cache-firefox-
+          key: v1.0-dependency-cache-firefox-
       - run:
           name: Install firefox
           command: ./.circleci/scripts/firefox-install.sh
@@ -407,7 +402,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: dependency-cache-firefox-
+          key: v1.0-dependency-cache-firefox-
       - run:
           name: Install firefox
           command: ./.circleci/scripts/firefox-install.sh
