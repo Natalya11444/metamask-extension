@@ -183,7 +183,7 @@ jobs:
 
   test-lint:
     docker:
-      - image: circleci/node:8-browsers
+      - image: circleci/node:8.11.3-browsers
     steps:
       - checkout
       - restore_cache:
@@ -194,7 +194,7 @@ jobs:
 
   test-deps:
     docker:
-      - image: circleci/node:8-browsers
+      - image: circleci/node:8.11.3-browsers
     steps:
       - checkout
       - restore_cache:
