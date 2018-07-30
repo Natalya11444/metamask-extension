@@ -81,8 +81,8 @@ workflows:
           requires:
             - prep-deps-npm
             - prep-build
-            - job-screens
-            - all-tests-pass
+#            - job-screens
+#            - all-tests-pass
       - job-publish-release:
           filters:
             branches:
