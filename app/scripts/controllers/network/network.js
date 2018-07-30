@@ -17,7 +17,6 @@ const {
   LOCALHOST,
   POA_SOKOL,
 } = require('./enums')
-const LOCALHOST_RPC_URL = 'http://localhost:8545'
 const SOKOL_RPC_URL = 'https://sokol.poa.network'
 const LOCALHOST_RPC_URL = 'http://localhost:8545'
 const POA_RPC_URL = 'https://core.poa.network'
