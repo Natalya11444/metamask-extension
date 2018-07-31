@@ -81,11 +81,11 @@ describe('MetaMask', function () {
       await driver.switchTo().window(firstTab)
       await delay(regularDelayMs)
       try {
-        networkSelector = await findElement(driver, By.css('#network_component'))
+        networkSelector = await findElement(driver, By.css('.network-indicator'))
       } catch (e) {
         await loadExtension(driver, extensionId)
         await delay(largeDelayMs * 2)
-        networkSelector = await findElement(driver, By.css('#network_component'))
+        networkSelector = await findElement(driver, By.css('.network-indicator'))
       }
       await delay(regularDelayMs)
     })
