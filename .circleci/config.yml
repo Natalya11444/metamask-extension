@@ -57,8 +57,6 @@ workflows:
             - test-unit
             - test-e2e-chrome
             - test-e2e-firefox
-            - test-e2e-beta-chrome
-            - test-e2e-beta-firefox
             - test-integration-mascara-chrome
             - test-integration-mascara-firefox
             - test-integration-flat-chrome
