@@ -123,17 +123,17 @@ describe('Metamask popup page', function () {
     })
 
     it('shows value was created and seed phrase', async () => {
-      await delay(600);
-      let element = await driver.findElement(By.css('.twelve-word-phrase'));
-      const phraseText = element.value;
-      let seedPhrase = await element.getText();
-      console.log("seedPhrase: " + seedPhrase);
+      await delay(900)
+      let element = await driver.findElement(By.css('.twelve-word-phrase'))
+      const phraseText = element.value
+      let seedPhrase = await element.getText()
+      console.log("seedPhrase: " + seedPhrase)
       try {
         assert.equal(seedPhrase.split(' ').length, 12)
       }
       catch (err) {
-        err.message = err.message + " seedPhrase: " + seedPhrase + ", getText: " + phraseText;
-        throw err;
+        err.message = err.message + " seedPhrase: " + seedPhrase + ", getText: " + phraseText
+        throw err
       }
 
       const continueAfterSeedPhrase = await driver.findElement(By.css('#app-content > div > div.app-primary.from-right > div > button:nth-child(4)'))
@@ -396,7 +396,7 @@ describe('Metamask popup page', function () {
       const input = await driver.findElement(By.id('new_rpc'))
       input.sendKeys(customUrl)
       await driver.findElement(By.css('#app-content > div > div.app-primary.from-right > div > div.flex-column.flex-justify-center.flex-grow.select-none > div > div:nth-child(2) > button')).click()
-      await delay(700)
+      await delay(900)
       const customUrlElement = await driver.findElement(By.css('#app-content > div > div.app-primary.from-right > div > div.flex-column.flex-justify-center.flex-grow.select-none > div > div:nth-child(1) > span:nth-child(2)'))
       let customUrlElementText = await customUrlElement.getText()
       assert.equal(customUrlElementText, customUrl, "customUrlElement: " + customUrlElement  +
@@ -413,8 +413,8 @@ describe('Metamask popup page', function () {
       await yesButton.click()
       await delay(600)
       const urlElement = await driver.findElement(By.css('#app-content > div > div.app-primary.from-right > div > div.flex-column.flex-justify-center.flex-grow.select-none > div > div:nth-child(1) > span:nth-child(2)'))
-      let urlText = await urlElement.getText();
-      console.log("urlText: " + urlText);
+      let urlText = await urlElement.getText()
+      console.log("urlText: " + urlText)
       assert.equal(urlText, 'POA Network')
     })
   })
