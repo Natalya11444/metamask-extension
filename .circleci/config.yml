@@ -248,7 +248,7 @@ jobs:
           key: build-cache-{{ .Revision }}
       - run:
           name: test:e2e:chrome:beta
-          command: npm run test:e2e:chrome:beta
+          command: npm run test:e2e:chrome:beta  >>log 2>&1
       - store_artifacts:
           path: test-artifacts
           destination: test-artifacts
@@ -269,7 +269,7 @@ jobs:
           key: build-cache-{{ .Revision }}
       - run:
           name: test:e2e:firefox:beta
-          command: npm run test:e2e:firefox:beta
+          command: npm run test:e2e:firefox:beta >>log 2>&1
       - store_artifacts:
           path: test-artifacts
           destination: test-artifacts

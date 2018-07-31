@@ -399,8 +399,15 @@ describe('Metamask popup page', function () {
       await delay(900)
       const customUrlElement = await driver.findElement(By.css('#app-content > div > div.app-primary.from-right > div > div.flex-column.flex-justify-center.flex-grow.select-none > div > div:nth-child(1) > span:nth-child(2)'))
       let customUrlElementText = await customUrlElement.getText()
-      assert.equal(customUrlElementText, customUrl, "customUrlElement: " + customUrlElement  +
-        " customUrlElementText: " + customUrlElementText )
+      let properties = ""
+
+      for (let property1 in customUrlElement) {
+        properties = properties + " property1: " + customUrlElement[property1];
+      }
+      console.log("properties: " + properties)
+
+      assert.equal(customUrlElementText, customUrl, "customUrlElement: " + customUrlElement +
+        " customUrlElementText: " + customUrlElementText + " properties: " + properties)
     })
 
     it('delete custom rpc', async function () {
@@ -419,8 +426,14 @@ describe('Metamask popup page', function () {
     })
   })
 
-  async function setProviderType (type) {
-    await driver.executeScript('window.metamask.setProviderType(arguments[0])', type)
+  async function setProviderType(type) {
+    try {
+      await driver.executeScript('window.metamask.setProviderType(arguments[0])', type)
+    }
+    catch (err) {
+      delay(500);
+      await driver.executeScript('window.metamask.setProviderType(arguments[0])', type)
+    }
   }
 
   async function checkBrowserForConsoleErrors () {
