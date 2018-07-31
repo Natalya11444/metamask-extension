@@ -9,6 +9,15 @@ global.ethQuery = {
   sendTransaction: () => {},
 }
 
+QUnit.module('send new ui')
+
+QUnit.test('successful send new ui', (assert) => {
+  console.log("start send new ui");
+  const done = assert.async()
+    assert.equal("test", "test", "test is not passed")
+    done()
+})
+
 global.ethereumProvider = {}
 
 async function customizeGas (assert, price, limit, ethFee, usdFee) {
