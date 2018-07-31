@@ -399,9 +399,11 @@ describe('Metamask popup page', function () {
       const yesButton = await driver.findElement(By.css('#app-content > div > div.app-primary.from-right > div > div:nth-child(3) > button:nth-child(1)'))
       assert.equal(await yesButton.getText(), 'Yes')
       await yesButton.click()
-      await delay(300)
+      await delay(600)
       const urlElement = await driver.findElement(By.css('#app-content > div > div.app-primary.from-right > div > div.flex-column.flex-justify-center.flex-grow.select-none > div > div:nth-child(1) > span:nth-child(2)'))
-      assert.equal(await urlElement.getText(), 'POA Network')
+      let urlText = await urlElement.getText();
+      console.log("urlText: " + urlText);
+      assert.equal(urlText, 'POA Network')
     })
   })
 

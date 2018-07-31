@@ -106,7 +106,7 @@ async function runFirstTimeUsageTest (assert, done) {
 
   const networkMenu2 = (await findAsync(app, '.network-indicator'))[0]
   const children2 = networkMenu2.children
-  children2.length[2]
+  children2.length[3]
   assert.ok(children2, 'All network options present')
 }
 
