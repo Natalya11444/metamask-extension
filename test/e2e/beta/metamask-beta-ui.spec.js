@@ -98,9 +98,9 @@ describe('MetaMask', function () {
       await delay(regularDelayMs)
 
       const networks = await findElements(driver, By.css('.dropdown-menu-item'))
-      const localhost = networks[4]
+      const localhost = networks[6]
       console.log('before wait ');
-      await driver.wait(until.elementTextMatches(localhost, /Localhost/))
+      await driver.wait(until.elementTextMatches(localhost, /Localhost/), 50000, 'element is not found, text: ' + await localhost.getText())
       console.log('after wait');
       await localhost.click()
       console.log('finish uses the local network');
