@@ -399,7 +399,7 @@ describe('Metamask popup page', function () {
       await delay(700)
       const customUrlElement = await driver.findElement(By.css('#app-content > div > div.app-primary.from-right > div > div.flex-column.flex-justify-center.flex-grow.select-none > div > div:nth-child(1) > span:nth-child(2)'))
       let customUrlElementText = await customUrlElement.getText()
-      assert.equal(customUrlElementText, customUrl, "customUrlElement: " + JSON.stringify(customUrlElement)  +
+      assert.equal(customUrlElementText, customUrl, "customUrlElement: " + customUrlElement  +
         " customUrlElementText: " + customUrlElementText )
     })
 
