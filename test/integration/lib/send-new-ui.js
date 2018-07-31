@@ -9,13 +9,14 @@ global.ethQuery = {
   sendTransaction: () => {},
 }
 
-QUnit.module('send new ui')
+QUnit.module('new ui send flow')
 
-QUnit.test('successful send new ui', (assert) => {
-  console.log("start send new ui");
+QUnit.skip('successful send flow', (assert) => {
   const done = assert.async()
-    assert.equal("test", "test", "test is not passed")
+  runSendFlowTest(assert).then(done).catch((err) => {
+    assert.notOk(err, `Error was thrown: ${err.stack}`)
     done()
+  })
 })
 
 global.ethereumProvider = {}
