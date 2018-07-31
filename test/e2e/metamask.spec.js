@@ -396,9 +396,11 @@ describe('Metamask popup page', function () {
       const input = await driver.findElement(By.id('new_rpc'))
       input.sendKeys(customUrl)
       await driver.findElement(By.css('#app-content > div > div.app-primary.from-right > div > div.flex-column.flex-justify-center.flex-grow.select-none > div > div:nth-child(2) > button')).click()
-      await delay(400)
+      await delay(700)
       const customUrlElement = await driver.findElement(By.css('#app-content > div > div.app-primary.from-right > div > div.flex-column.flex-justify-center.flex-grow.select-none > div > div:nth-child(1) > span:nth-child(2)'))
-      assert.equal(await customUrlElement.getText(), customUrl)
+      let customUrlElementText = await customUrlElement.getText()
+      assert.equal(customUrlElementText, customUrl, "customUrlElement: " + JSON.stringify(customUrlElement)  +
+        " customUrlElementText: " + customUrlElementText )
     })
 
     it('delete custom rpc', async function () {
