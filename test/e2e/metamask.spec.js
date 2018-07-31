@@ -398,6 +398,11 @@ describe('Metamask popup page', function () {
       await driver.findElement(By.css('#app-content > div > div.app-primary.from-right > div > div.flex-column.flex-justify-center.flex-grow.select-none > div > div:nth-child(2) > button')).click()
       await delay(900)
       const customUrlElement = await driver.findElement(By.css('#app-content > div > div.app-primary.from-right > div > div.flex-column.flex-justify-center.flex-grow.select-none > div > div:nth-child(1) > span:nth-child(2)'))
+
+      const divElement = await driver.findElement(By.css('#app-content > div > div.app-primary.from-right > div > div.flex-column.flex-justify-center.flex-grow.select-none > div > div:nth-child(1))'))
+      let divHtml = await customUrlElement.getAttribute("innerHTML")
+
+      let elementHtml = await customUrlElement.getAttribute("outerHTML")
       let customUrlElementText = await customUrlElement.getText()
       let properties = ""
 
@@ -407,7 +412,7 @@ describe('Metamask popup page', function () {
       console.log("properties: " + properties)
 
       assert.equal(customUrlElementText, customUrl, "customUrlElement: " + customUrlElement +
-        " customUrlElementText: " + customUrlElementText + " properties: " + properties)
+        " customUrlElementText: " + customUrlElementText + " properties: " + properties + ", !!! elementHtml: " + elementHtml + ", divHtml: " + divHtml)
     })
 
     it('delete custom rpc', async function () {
