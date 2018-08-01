@@ -421,7 +421,7 @@ describe('Metamask popup page', function () {
       console.log("properties: " + properties)
 
       let insertedText = await input.getText();
-      let value = input.getAttribute("value");
+      let value = await input.getAttribute("value");
       let value2 = input.value;
 
       assert.equal(customUrlElementText, customUrl, "customUrlElement: " + customUrlElement +
