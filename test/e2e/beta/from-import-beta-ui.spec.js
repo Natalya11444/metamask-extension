@@ -80,7 +80,7 @@ describe('Using MetaMask with an existing account', function () {
     })
 
     it('use the local network', async function () {
-      const networkSelector = await findElement(driver, By.css('.network-indicator'))
+      const networkSelector = await findElement(driver, By.css('#network_component'))
       await networkSelector.click()
       await delay(regularDelayMs)
 

@@ -124,43 +124,16 @@ describe('Metamask popup page', function () {
 
     it('shows value was created and seed phrase', async () => {
       await delay(900)
-      let divElement = await driver.findElement(By.css('.app-primary'))
-      let divHtml = await divElement.getAttribute("innerHTML")
-
-      let phraseText;
       let seedPhrase;
-
       try {
         let element = await driver.findElement(By.css('.twelve-word-phrase'))
-        phraseText = element.value
-         seedPhrase = await element.getText()
-        console.log("seedPhrase: " + seedPhrase)
+        seedPhrase = await element.getText()
         assert.equal(seedPhrase.split(' ').length, 12)
       }
       catch (err) {
-        try {
-          const passwordBox = await driver.findElement(By.id('password-box'))
-          const passwordBoxConfirm = await driver.findElement(By.id('password-box-confirm'))
-          const button = await driver.findElements(By.css('button'))
-          await passwordBox.sendKeys('123456789')
-          await passwordBoxConfirm.sendKeys('123456789')
-          await button[0].click()
-          await delay(5000)
-
-
-          let element = await driver.findElement(By.css('.twelve-word-phrase'))
-          phraseText = element.value
-          seedPhrase = await element.getText()
-          console.log("seedPhrase: " + seedPhrase)
-          assert.equal(seedPhrase.split(' ').length, 12)
-        }
-        catch (err) {
-          err.message = err.message + " seedPhrase: " + seedPhrase + ", getText: " + phraseText + ", divHtml: " + divHtml
-          throw err
-        }
-
+        err.message += " seedPhrase: " + seedPhrase
+        throw err
       }
-
       const continueAfterSeedPhrase = await driver.findElement(By.css('#app-content > div > div.app-primary.from-right > div > button:nth-child(4)'))
       assert.equal(await continueAfterSeedPhrase.getText(), `I'VE COPIED IT SOMEWHERE SAFE`)
       await continueAfterSeedPhrase.click()
@@ -420,37 +393,12 @@ describe('Metamask popup page', function () {
       const customUrl = 'http://test.com'
       const input = await driver.findElement(By.id('new_rpc'))
       input.sendKeys(customUrl)
-
       await driver.findElement(By.css('#app-content > div > div.app-primary.from-right > div > div.flex-column.flex-justify-center.flex-grow.select-none > div > div:nth-child(2) > button')).click()
       input.sendKeys(Key.ENTER)
       await delay(3000)
       const customUrlElement = await driver.findElement(By.css('#app-content > div > div.app-primary.from-right > div > div.flex-column.flex-justify-center.flex-grow.select-none > div > div:nth-child(1) > span:nth-child(2)'))
-
-      const divElement = await driver.findElement(By.css('#app-content > div > div.app-primary.from-right > div > div.flex-column.flex-justify-center.flex-grow.select-none > div > div:nth-child(1)'))
-      const inputDivElement = await driver.findElement(By.css('#app-content > div > div.app-primary.from-right > div > div.flex-column.flex-justify-center.flex-grow.select-none > div > div:nth-child(2)'))
-
-      let divHtml = await divElement.getAttribute("innerHTML")
-      let inputDivHtml = await inputDivElement.getAttribute("innerHTML")
-
-      let elementHtml = await customUrlElement.getAttribute("outerHTML")
       let customUrlElementText = await customUrlElement.getText()
-      let properties = ""
-
-      for (let property1 in customUrlElement) {
-        properties = properties + " property1: " + customUrlElement[property1];
-      }
-      console.log("properties: " + properties)
-
-      let insertedText = await input.getText();
-      let value = await input.getAttribute("value");
-      let value2 = input.value;
-
-
-
-      assert.equal(customUrlElementText, customUrl, "customUrlElement: " + customUrlElement +
-        " customUrlElementText: " + customUrlElementText + " properties: " + properties + ", !!! elementHtml: " + elementHtml
-        + ", divHtml: " + divHtml + ", insertedText: " + insertedText
-      + ", inputDivHtml: " + inputDivHtml + ", value: " + value + ", value2: " + value2)
+      assert.equal(customUrlElementText, customUrl)
     })
 
     it('delete custom rpc', async function () {
@@ -463,20 +411,12 @@ describe('Metamask popup page', function () {
       await yesButton.click()
       await delay(600)
       const urlElement = await driver.findElement(By.css('#app-content > div > div.app-primary.from-right > div > div.flex-column.flex-justify-center.flex-grow.select-none > div > div:nth-child(1) > span:nth-child(2)'))
-      let urlText = await urlElement.getText()
-      console.log("urlText: " + urlText)
-      assert.equal(urlText, 'POA Network')
+      assert.equal(await urlElement.getText(), 'POA Network')
     })
   })
 
   async function setProviderType(type) {
-    try {
-      await driver.executeScript('window.metamask.setProviderType(arguments[0])', type)
-    }
-    catch (err) {
-      delay(500);
-      await driver.executeScript('window.metamask.setProviderType(arguments[0])', type)
-    }
+    await driver.executeScript('window.metamask.setProviderType(arguments[0])', type)
   }
 
   async function checkBrowserForConsoleErrors () {
