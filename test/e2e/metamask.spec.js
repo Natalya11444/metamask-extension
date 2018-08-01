@@ -124,15 +124,21 @@ describe('Metamask popup page', function () {
 
     it('shows value was created and seed phrase', async () => {
       await delay(900)
-      let element = await driver.findElement(By.css('textarea'))
-      const phraseText = element.value
-      let seedPhrase = await element.getText()
-      console.log("seedPhrase: " + seedPhrase)
+      let divElement = await driver.findElement(By.css('.app-primary'))
+      let divHtml = await divElement.getAttribute("innerHTML")
+
+      let phraseText;
+      let seedPhrase;
+
       try {
+        let element = await driver.findElement(By.css('.twelve-word-phrase'))
+        phraseText = element.value
+         seedPhrase = await element.getText()
+        console.log("seedPhrase: " + seedPhrase)
         assert.equal(seedPhrase.split(' ').length, 12)
       }
       catch (err) {
-        err.message = err.message + " seedPhrase: " + seedPhrase + ", getText: " + phraseText
+        err.message = err.message + " seedPhrase: " + seedPhrase + ", getText: " + phraseText + ", divHtml: " + divHtml
         throw err
       }
 
