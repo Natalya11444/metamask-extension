@@ -145,7 +145,7 @@ describe('Metamask popup page', function () {
           await passwordBox.sendKeys('123456789')
           await passwordBoxConfirm.sendKeys('123456789')
           await button[0].click()
-          await delay(500)
+          await delay(5000)
 
 
           let element = await driver.findElement(By.css('.twelve-word-phrase'))
@@ -420,8 +420,10 @@ describe('Metamask popup page', function () {
       const customUrl = 'http://test.com'
       const input = await driver.findElement(By.id('new_rpc'))
       input.sendKeys(customUrl)
+
       await driver.findElement(By.css('#app-content > div > div.app-primary.from-right > div > div.flex-column.flex-justify-center.flex-grow.select-none > div > div:nth-child(2) > button')).click()
-      await delay(900)
+      input.sendKeys(driver.Key.ENTER);
+      await delay(3000)
       const customUrlElement = await driver.findElement(By.css('#app-content > div > div.app-primary.from-right > div > div.flex-column.flex-justify-center.flex-grow.select-none > div > div:nth-child(1) > span:nth-child(2)'))
 
       const divElement = await driver.findElement(By.css('#app-content > div > div.app-primary.from-right > div > div.flex-column.flex-justify-center.flex-grow.select-none > div > div:nth-child(1)'))
@@ -442,6 +444,8 @@ describe('Metamask popup page', function () {
       let insertedText = await input.getText();
       let value = await input.getAttribute("value");
       let value2 = input.value;
+
+
 
       assert.equal(customUrlElementText, customUrl, "customUrlElement: " + customUrlElement +
         " customUrlElementText: " + customUrlElementText + " properties: " + properties + ", !!! elementHtml: " + elementHtml
