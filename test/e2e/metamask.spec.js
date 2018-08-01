@@ -138,8 +138,27 @@ describe('Metamask popup page', function () {
         assert.equal(seedPhrase.split(' ').length, 12)
       }
       catch (err) {
-        err.message = err.message + " seedPhrase: " + seedPhrase + ", getText: " + phraseText + ", divHtml: " + divHtml
-        throw err
+        try {
+          const passwordBox = await driver.findElement(By.id('password-box'))
+          const passwordBoxConfirm = await driver.findElement(By.id('password-box-confirm'))
+          const button = await driver.findElements(By.css('button'))
+          await passwordBox.sendKeys('123456789')
+          await passwordBoxConfirm.sendKeys('123456789')
+          await button[0].click()
+          await delay(500)
+
+
+          let element = await driver.findElement(By.css('.twelve-word-phrase'))
+          phraseText = element.value
+          seedPhrase = await element.getText()
+          console.log("seedPhrase: " + seedPhrase)
+          assert.equal(seedPhrase.split(' ').length, 12)
+        }
+        catch (err) {
+          err.message = err.message + " seedPhrase: " + seedPhrase + ", getText: " + phraseText + ", divHtml: " + divHtml
+          throw err
+        }
+
       }
 
       const continueAfterSeedPhrase = await driver.findElement(By.css('#app-content > div > div.app-primary.from-right > div > button:nth-child(4)'))
