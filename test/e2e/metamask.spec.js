@@ -123,7 +123,7 @@ describe('Metamask popup page', function () {
     })
 
     it('shows value was created and seed phrase', async () => {
-      await delay(900)
+      await delay(300)
       const element = await driver.findElement(By.css('.twelve-word-phrase'))
       const seedPhrase = await element.getText()
       assert.equal(seedPhrase.split(' ').length, 12)
@@ -388,7 +388,7 @@ describe('Metamask popup page', function () {
       input.sendKeys(customUrl)
       await driver.findElement(By.css('#app-content > div > div.app-primary.from-right > div > div.flex-column.flex-justify-center.flex-grow.select-none > div > div:nth-child(2) > button')).click()
       input.sendKeys(Key.ENTER)
-      await delay(3000)
+      await delay(400)
       const customUrlElement = await driver.findElement(By.css('#app-content > div > div.app-primary.from-right > div > div.flex-column.flex-justify-center.flex-grow.select-none > div > div:nth-child(1) > span:nth-child(2)'))
       assert.equal(await customUrlElement.getText(), customUrl)
     })
@@ -401,7 +401,7 @@ describe('Metamask popup page', function () {
       const yesButton = await driver.findElement(By.css('#app-content > div > div.app-primary.from-right > div > div:nth-child(3) > button:nth-child(1)'))
       assert.equal(await yesButton.getText(), 'Yes')
       await yesButton.click()
-      await delay(600)
+      await delay(300)
       const urlElement = await driver.findElement(By.css('#app-content > div > div.app-primary.from-right > div > div.flex-column.flex-justify-center.flex-grow.select-none > div > div:nth-child(1) > span:nth-child(2)'))
       assert.equal(await urlElement.getText(), 'POA Network')
     })
