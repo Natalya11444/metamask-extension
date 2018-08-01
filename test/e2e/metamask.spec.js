@@ -422,7 +422,7 @@ describe('Metamask popup page', function () {
       input.sendKeys(customUrl)
 
       await driver.findElement(By.css('#app-content > div > div.app-primary.from-right > div > div.flex-column.flex-justify-center.flex-grow.select-none > div > div:nth-child(2) > button')).click()
-      input.sendKeys(driver.Key.ENTER);
+      input.sendKeys(Key.ENTER)
       await delay(3000)
       const customUrlElement = await driver.findElement(By.css('#app-content > div > div.app-primary.from-right > div > div.flex-column.flex-justify-center.flex-grow.select-none > div > div:nth-child(1) > span:nth-child(2)'))
 
