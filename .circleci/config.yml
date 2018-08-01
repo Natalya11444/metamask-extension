@@ -70,8 +70,8 @@ workflows:
           requires:
             - prep-deps-npm
             - prep-build
-#            - job-screens
-#            - all-tests-pass
+            - job-screens
+            - all-tests-pass
       - job-publish-release:
           filters:
             branches:
@@ -258,7 +258,7 @@ jobs:
           key: build-cache-{{ .Revision }}
       - run:
           name: test:e2e:firefox:beta
-          command: npm run test:e2e:firefox:beta >>log 2>&1
+          command: npm run test:e2e:firefox:beta
       - store_artifacts:
           path: test-artifacts
           destination: test-artifacts
@@ -407,7 +407,6 @@ jobs:
       - run:
           name: test:integration:mascara
           command: npm run test:mascara
-
 
   test-integration-mascara-chrome:
     environment:

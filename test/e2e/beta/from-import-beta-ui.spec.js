@@ -73,7 +73,7 @@ describe('Using MetaMask with an existing account', function () {
   })
 
   describe('New UI setup', async function () {
-    it('switches to first tab (from) ', async function () {
+    it('switches to first tab', async function () {
       const [firstTab] = await driver.getAllWindowHandles()
       await driver.switchTo().window(firstTab)
       await delay(regularDelayMs)

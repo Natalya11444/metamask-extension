@@ -76,34 +76,28 @@ describe('MetaMask', function () {
 
   describe('New UI setup', async function () {
     let networkSelector
-    it('switches to first tab (other)', async function () {
+    it('switches to first tab', async function () {
       const [firstTab] = await driver.getAllWindowHandles()
       await driver.switchTo().window(firstTab)
       await delay(regularDelayMs)
       try {
-        networkSelector = await findElement(driver, By.css('.network-indicator'))
+        networkSelector = await findElement(driver, By.css('#network_component'))
       } catch (e) {
-        console.log("error: " + e)
         await loadExtension(driver, extensionId)
         await delay(largeDelayMs * 2)
-        networkSelector = await findElement(driver, By.css('.network-indicator'))
+        networkSelector = await findElement(driver, By.css('#network_component'))
       }
-      console.log("networkSelector: " + networkSelector)
       await delay(regularDelayMs)
     })
 
     it('uses the local network', async function () {
-      console.log('start uses the local network');
       await networkSelector.click()
       await delay(regularDelayMs)
 
       const networks = await findElements(driver, By.css('.dropdown-menu-item'))
-      const localhost = networks[6]
-      console.log('before wait ');
-      await driver.wait(until.elementTextMatches(localhost, /Localhost/), 50000, 'element is not found, text: ' + await localhost.getText())
-      console.log('after wait');
+      const localhost = networks[4]
+      await driver.wait(until.elementTextMatches(localhost, /Localhost/))
       await localhost.click()
-      console.log('finish uses the local network');
       await delay(regularDelayMs)
     })
 
