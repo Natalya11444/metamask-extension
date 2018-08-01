@@ -421,10 +421,13 @@ describe('Metamask popup page', function () {
       console.log("properties: " + properties)
 
       let insertedText = await input.getText();
+      let value = input.getAttribute("value");
+      let value2 = input.value;
+
       assert.equal(customUrlElementText, customUrl, "customUrlElement: " + customUrlElement +
         " customUrlElementText: " + customUrlElementText + " properties: " + properties + ", !!! elementHtml: " + elementHtml
         + ", divHtml: " + divHtml + ", insertedText: " + insertedText
-      + ", inputDivHtml: " + inputDivHtml)
+      + ", inputDivHtml: " + inputDivHtml + ", value: " + value + ", value2: " + value2)
     })
 
     it('delete custom rpc', async function () {
