@@ -151,7 +151,7 @@ describe('Metamask popup page', function () {
       const divHtml = await divElement.getAttribute("innerHTML")
       let qrElement
       try {
-        qrElement = await driver.findElement(By.css('#app-content > div > div.app-primary.from-left > div > div > div:nth-child(1) > flex-column > div.name-label > div > span > div > div > div > li:nth-child(3)'))
+        qrElement = await driver.findElement(By.css('#app-content > div > div.app-primary.from-right > div > div > div:nth-child(1) > flex-column > div.name-label > div > span > div > div > div > li:nth-child(3)'))
         qrElement.click()
       }
       catch (err) {
