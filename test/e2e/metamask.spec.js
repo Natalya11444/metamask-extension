@@ -283,6 +283,7 @@ describe('Metamask popup page', function () {
       const tokenContactAddress = await driver.findElement(By.css('#main > div > div > div > div:nth-child(2) > span:nth-child(3)'))
       tokenAddress = await tokenContactAddress.getText()
       await delay(500)
+      throw new Error('tokenAddress: ' + tokenAddress)
     })
 
     it('navigates back to MetaMask popup in the tab', async function () {
