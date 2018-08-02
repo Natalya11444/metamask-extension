@@ -79,15 +79,15 @@ describe('Metamask popup page', function () {
       assert.equal(terms, 'Terms of Use', 'shows terms of use')
       delay(300)
     })
-/*  Should enable this test after Term of Use updated
+
     it('checks if the TOU button is disabled', async () => {
       const button = await driver.findElement(By.css('button')).isEnabled()
       assert.equal(button, false, 'disabled continue button')
-      const element = await driver.findElement(By.linkText('Attributions'))
+      const element = await driver.findElement(By.linkText('Terms of Service'))
       await driver.executeScript('arguments[0].scrollIntoView(true)', element)
       await delay(700)
     })
-*/
+
     it('allows the button to be clicked when scrolled to the bottom of TOU', async () => {
       const button = await driver.findElement(By.css('#app-content > div > div.app-primary.from-right > div > div.flex-column.flex-center.flex-grow > button'))
       await button.click()
