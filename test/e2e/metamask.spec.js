@@ -112,7 +112,7 @@ describe('Metamask popup page', function () {
       const seedPhrase = await element.getText()
       assert.equal(seedPhrase.split(' ').length, 12)
       const continueAfterSeedPhrase = await driver.findElement(By.css('#app-content > div > div.app-primary.from-right > div > button:nth-child(4)'))
-      assert.equal(await continueAfterSeedPhrase.getText(), `I\\'ve copied it somewhere safe`)
+      assert.equal(await continueAfterSeedPhrase.getText(), `I've copied it somewhere safe`)
       await continueAfterSeedPhrase.click()
       await delay(300)
     })
