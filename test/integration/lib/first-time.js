@@ -90,7 +90,7 @@ async function runFirstTimeUsageTest(assert, done) {
   assert.ok(detail2, 'Account detail section loaded again.')
 
   // open account settings dropdown
-  const qrButton = (await findAsync(app, '.fa.fa-ellipsis-h'))[0]
+  const qrButton = (await findAsync(app, '.account-dropdown'))[0]
   qrButton.click()
 
   // qr code item

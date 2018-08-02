@@ -93,24 +93,6 @@ describe('Metamask popup page', function () {
       await button.click()
     })
 
-    it('shows privacy notice', async () => {
-      const privacy = await driver.findElement(By.css('.terms-header')).getText()
-      assert.equal(privacy, 'PRIVACY NOTICE', 'shows privacy notice')
-      await driver.findElement(By.css('button')).click()
-      await delay(300)
-    })
-
-    it('shows phishing notice', async () => {
-      await delay(300)
-      const noticeHeader = await driver.findElement(By.css('.terms-header')).getText()
-      assert.equal(noticeHeader, 'PHISHING WARNING', 'shows phishing warning')
-      const element = await driver.findElement(By.css('.markdown'))
-      await driver.executeScript('arguments[0].scrollTop = arguments[0].scrollHeight', element)
-      await delay(300)
-      await driver.findElement(By.css('button')).click()
-      await delay(300)
-    })
-
     it('accepts password with length of eight', async () => {
       const passwordBox = await driver.findElement(By.id('password-box'))
       const passwordBoxConfirm = await driver.findElement(By.id('password-box-confirm'))
