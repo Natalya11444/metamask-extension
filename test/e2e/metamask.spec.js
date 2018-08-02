@@ -76,7 +76,7 @@ describe('Metamask popup page', function () {
 
     it('show terms of use', async () => {
       const terms = await driver.findElement(By.css('.terms-header')).getText()
-      assert.equal(terms, 'TERMS OF USE', 'shows terms of use')
+      assert.equal(terms, 'Terms of Use', 'shows terms of use')
       delay(300)
     })
 /*  Should enable this test after Term of Use updated

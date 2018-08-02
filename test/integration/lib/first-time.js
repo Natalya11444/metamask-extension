@@ -56,7 +56,7 @@ async function runFirstTimeUsageTest(assert, done) {
   confBox.value = PASSWORD
 
   // create vault
-  const createButton = (await findAsync(app, 'button.primary'))[0]
+  const createButton = (await findAsync(app, 'button'))[0]
   createButton.click()
 
   await timeout()
@@ -83,7 +83,7 @@ async function runFirstTimeUsageTest(assert, done) {
   const pwBox2 = (await findAsync(app, '#password-box'))[0]
   pwBox2.value = PASSWORD
 
-  const createButton2 = (await findAsync(app, 'button.primary'))[0]
+  const createButton2 = (await findAsync(app, 'button'))[0]
   createButton2.click()
 
   const detail2 = (await findAsync(app, '.account-detail-section'))[0]
