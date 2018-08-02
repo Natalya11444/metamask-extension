@@ -209,14 +209,14 @@ describe('Metamask popup page', function () {
 
     it('sends transaction', async function () {
      const sendButton = await driver.findElement(By.css('#app-content > div > div.app-primary.from-right > div > div > div.flex-row > button:nth-child(4)'))
-     assert.equal(await sendButton.getText(), 'SEND')
+     assert.equal(await sendButton.getText(), 'Send')
      await sendButton.click()
      await delay(200)
     })
 
     it('adds recipient address and amount', async function () {
       const sendTranscationScreen = await driver.findElement(By.css('#app-content > div > div.app-primary.from-right > div > h3:nth-child(2)')).getText()
-      assert.equal(sendTranscationScreen, 'SEND TRANSACTION')
+      assert.equal(sendTranscationScreen, 'Send Transaction')
       const inputAddress = await driver.findElement(By.css('#app-content > div > div.app-primary.from-right > div > section:nth-child(3) > div > input'))
       const inputAmmount = await driver.findElement(By.css('#app-content > div > div.app-primary.from-right > div > section:nth-child(4) > input'))
       await inputAddress.sendKeys('0x2f318C334780961FB129D2a6c30D0763d9a5C970')
@@ -299,20 +299,20 @@ describe('Metamask popup page', function () {
 
     it('switches to the add token screen', async function () {
       const tokensTab = await driver.findElement(By.css('#app-content > div > div.app-primary.from-right > div > section > div > div.inactiveForm.pointer'))
-      assert.equal(await tokensTab.getText(), 'TOKENS')
+      assert.equal(await tokensTab.getText(), 'Tokens')
       await tokensTab.click()
       await delay(300)
     })
 
     it('navigates to the add token screen', async function () {
       const addTokenButton = await driver.findElement(By.css('#app-content > div > div.app-primary.from-right > div > section > div.full-flex-height > div > button'))
-      assert.equal(await addTokenButton.getText(), 'ADD TOKEN')
+      assert.equal(await addTokenButton.getText(), 'Add Token')
       await addTokenButton.click()
     })
 
     it('checks add token screen rendered', async function () {
       const addTokenScreen = await driver.findElement(By.css('#app-content > div > div.app-primary.from-right > div > div.section-title.flex-row.flex-center > h2'))
-      assert.equal(await addTokenScreen.getText(), 'ADD TOKEN')
+      assert.equal(await addTokenScreen.getText(), 'Add Token')
     })
 
     it('adds token parameters', async function () {
@@ -337,7 +337,7 @@ describe('Metamask popup page', function () {
       const removeTokenTitle = await driver.findElement(By.css('#app-content > div > div.app-primary.from-right > div > div.section-title.flex-row.flex-center > h2'))
 
       // Check that the correct page is opened
-      assert.equal(await removeTokenTitle.getText(), 'REMOVE TOKEN')
+      assert.equal(await removeTokenTitle.getText(), 'Remove Token')
 
       // Go back
       await driver.findElement(By.css('.fa-arrow-left')).click()
@@ -355,7 +355,7 @@ describe('Metamask popup page', function () {
       const removeTokenTitle = await driver.findElement(By.css('#app-content > div > div.app-primary.from-right > div > div.section-title.flex-row.flex-center > h2'))
 
       // Check that the correct page is opened
-      assert.equal(await removeTokenTitle.getText(), 'REMOVE TOKEN')
+      assert.equal(await removeTokenTitle.getText(), 'Remove Token')
 
       // Confirm the removal
       const confirmRemoveTokenButton = await driver.findElement(By.css('#app-content > div > div.app-primary.from-right > div > div.flex-column.flex-justify-center.flex-grow.select-none > div > button'))
@@ -396,7 +396,7 @@ describe('Metamask popup page', function () {
       await driver.findElement(By.css('#app-content > div > div.app-primary.from-right > div > div.flex-column.flex-justify-center.flex-grow.select-none > div > div:nth-child(1) > button')).click()
       await delay(300)
       const titleConfirmPage = await driver.findElement(By.css('#app-content > div > div.app-primary.from-right > div > div.section-title.flex-row.flex-center > h2'))
-      assert.equal(await titleConfirmPage.getText(), 'DELETE CUSTOM RPC')
+      assert.equal(await titleConfirmPage.getText(), 'Delete Custom RPC')
       const yesButton = await driver.findElement(By.css('#app-content > div > div.app-primary.from-right > div > div:nth-child(3) > button:nth-child(1)'))
       assert.equal(await yesButton.getText(), 'Yes')
       await yesButton.click()
