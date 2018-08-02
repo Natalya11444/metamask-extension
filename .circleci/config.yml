@@ -9,15 +9,15 @@ workflows:
       - prep-build:
           requires:
             - prep-deps-npm
-      - prep-docs:
-          requires:
-            - prep-deps-npm
+#      - prep-docs:
+#          requires:
+#            - prep-deps-npm
       - prep-scss:
           requires:
             - prep-deps-npm
-      - test-lint:
-          requires:
-            - prep-deps-npm
+#      - test-lint:
+#          requires:
+#            - prep-deps-npm
       - test-deps:
           requires:
             - prep-deps-npm
@@ -79,7 +79,7 @@ workflows:
           requires:
             - prep-deps-npm
             - prep-build
-            - prep-docs
+#            - prep-docs
             - job-screens
 #           - all-tests-pass
       - job-publish-postrelease:
@@ -89,7 +89,7 @@ workflows:
           requires:
              - prep-deps-npm
              - prep-build
-             - prep-docs
+#             - prep-docs
              - job-screens
 #            - all-tests-pass
 
