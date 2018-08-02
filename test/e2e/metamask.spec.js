@@ -147,7 +147,7 @@ describe('Metamask popup page', function () {
       await delay(300)
       await driver.findElement(By.css('.account-dropdown')).click()
       await delay(300)
-      const divElement = await driver.findElement(By.css('#app-content > div > div.app-primary.from-left > div > div > div:nth-child(1) > flex-column > div.name-label > div > span'))
+      const divElement = await driver.findElement(By.css('#app-content > div'))
       const divHtml = await divElement.getAttribute("innerHTML")
       let qrElement
       try {
