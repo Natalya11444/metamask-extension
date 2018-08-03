@@ -7,7 +7,7 @@ const {
 
 QUnit.module('new ui send flow')
 
-QUnit.test('successful send flow', (assert) => {
+QUnit.skip('successful send flow', (assert) => {
   const done = assert.async()
   runSendFlowTest(assert).then(done).catch((err) => {
     assert.notOk(err, `Error was thrown: ${err.stack}`)
