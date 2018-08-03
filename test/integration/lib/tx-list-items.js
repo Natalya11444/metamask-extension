@@ -6,7 +6,7 @@ const {
 
 QUnit.module('tx list items')
 
-QUnit.skip('renders list items successfully', (assert) => {
+QUnit.test('renders list items successfully', (assert) => {
   const done = assert.async()
   runTxListItemsTest(assert).then(done).catch((err) => {
     assert.notOk(err, `Error was thrown: ${err.stack}`)
